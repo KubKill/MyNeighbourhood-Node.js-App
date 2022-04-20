@@ -1,0 +1,58 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main class="szerszy-form">
+        <h2>Edytuj mieszkanie</h2>
+        <form class="form" novalidate onsubmit="return validateForm();">
+
+            <label for="numer">Numer mieszkania: *</label>
+            <input type="text" name="numer" value="12" id="numer" required />
+            <span id="errorNumer" class="errors-text"></span>
+
+            <label for="kodp">Kod pocztowy: *</label>
+            <input type="text" name="kodp" value="12365" id="kodp" required />
+            <span id="errorKodp" class="errors-text"></span>
+
+            <label for="ulica">Ulica: </label>
+            <input type="text" name="ulica" value="Panieńska" id="ulica" reqiured />
+            <span id="errorUlica" class="errors-text"></span>
+
+            <label for="nrBud">Numer budynku: *</label>
+            <input type="text" name="nrBud" value="5" id="nrBud" reqiured />
+            <span id="errorNrBud" class="errors-text"></span>
+
+            <label for="miasto">Miasto: *</label>
+            <input type="text" name="miasto" value="Warszawa" id="miasto" reqiured />
+            <span id="errorMiasto" class="errors-text"></span>
+
+            <label for="rozmMiesz">Rozmiar miaszkania: </label>
+            <input type="text" name="rozmMiesz" value="82" id="rozmMiesz" />
+            <span id="errorRozmMiesz" class="errors-text"></span>
+
+            <label for="pietro">Piętro: </label>
+            <input type="text" name="pietro" value="5" id="pietro" />
+            <span id="errorPietro" class="errors-text"></span>
+
+            <label for="garaz">Czy ma garaż: </label>
+            <select name="garaz" id="garaz">
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+                <option value="--">...</option>
+            </select>
+            <span id="errorGaraz"></span>
+
+            <label for="piwnica">Czy ma piwnicę: </label>
+            <select name="piwnica" id="piwnica">
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+                <option value="--">...</option>
+            </select>
+            <span id="errorPiwnica"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="form-button-submit" value="Zatwierdź" href="list.html" />
+                <a href="/locals" class="form-button-cancel">Anuluj</a>
+            </div>
+
+        </form>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

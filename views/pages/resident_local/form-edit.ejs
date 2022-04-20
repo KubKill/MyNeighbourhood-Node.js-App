@@ -1,0 +1,38 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main class="szerszy-form">
+        <h2>Somsiad w mieszkaniu szczegółowe dane</h2>
+        <form class="form" novalidate onsubmit="return validateForm();">
+
+            <label for="somsiad">Somsiad: *</label>
+            <select name="somsiad" id="somsiad" required>
+                <option value="--">Przemysław Klijański</option>
+                <option value="--">Grzegorz Brzęczyszczykiewicz</option>
+            </select>
+            <span id="errorSomsiad" class="errors-text"></span>
+
+            <label for="od">Data wprowadzki: *</label>
+            <input type="text" name="od" value="1997-09-24" id="od" required />
+            <span id="errorOd" class="errors-text"></span>
+
+            <label for="do">Data wyprowadzki: </label>
+            <input type="text" name="do" id="do" value="" />
+            <span id="errorDo" class="errors-text"></span>
+
+            <label for="mieszkanie">Mieszkanie: *</label>
+            <select name="mieszkanie" id="mieszkanie" required>
+                <option value="--">Warszawa, Panieńska 5/30</option>
+                <option value="--">Kazimierz Dolny, Olchowa 2</option>
+            </select>
+            <span id="errorMieszkanie" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="form-button-submit" value="Zatwierdź" href="list.html" />
+                <a href="" class="form-button-cancel">Anuluj</a>
+            </div>
+
+        </form>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

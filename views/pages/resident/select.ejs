@@ -1,0 +1,54 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Somsiad szczegółowe dane</h2>
+        <form class="form">
+
+            <label for="imie">Imię: *</label>
+            <input type="text" name="imie" value="Przemysław" id="imie" disabled />
+            <span id="errorImie"></span>
+
+            <label for="nazwisko">Nazwisko: *</label>
+            <input type="text" name="nazwisko" value="Kiljańśki" id="nazwisko" disabled />
+            <span id="errorNazwisko"></span>
+
+            <label for="numer">Numer: </label>
+            <input type="tel" name="numer" value="987 654 321" id="numer" disabled />
+            <span id="errorNumer"></span>
+
+            <label for="email">E-mail: </label>
+            <input type="email" name="email" value="przemo@gmail.com" id="email" disabled />
+            <span id="errorEmail"></span>
+
+        </form>
+
+        <h2>Szczegóły zamieszkania</h2>
+        <div style="overflow-x:auto;">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Numer mieszkania</th>
+                        <th>Numer budynku</th>
+                        <th>Ulica</th>
+                        <th>Miasto</th>
+                        <th>Data wprowadzki</th>
+                        <th>Data wyprowadzki</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12</td>
+                        <td>5</td>
+                        <td>Panieńska</td>
+                        <td>Warszawa</td>
+                        <td>24.09.1997</td>
+                        <td>Wciąż mieszka</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="select-box-buttons">
+            <a href="form-edit.html" class="select-button-edit">Edytuj</a>
+            <a href="list.html" class="select-button-cancel">Powrót</a>
+        </div>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

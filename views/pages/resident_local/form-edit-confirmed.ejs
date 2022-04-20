@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <Meta charset="UTF-8">
+    <script type="application/javascript" src="../../js/validationCommon.js"></script>
+    <title>Somsiad w mieszkaniu szczegółowe dane</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <Header>
+        <div class="tv">
+            <h1>Somsiad w mieszkaniu</h1>
+            <img src="../../images/s_w_m.jfif" alt="Obrazek przedstawiający tytułowych bogaterów bajki 'Sąsiedzi'">
+        </div>
+    </Header>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Strona główna</a></li>
+            <li><a href="list.html">Somsiedzi</a></li>
+            <li><a href="../local/list.html">Mieszkania</a></li>
+            <li><a href="../resident_local/list.html" class="active">Somsiedzi w mieszkaniach</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Somsiad w mieszkaniu szczegółowe dane</h2>
+        <form class="form">
+
+            <label for="somsiad">Somsiad: *</label>
+            <select name="somsiad" id="somsiad" required>
+                <option value="--">Przemysław Klijański</option>
+                <option value="--">Grzegorz Brzęczyszczykiewicz</option>
+            </select>
+            <span id="errorSomsiad"></span>
+
+            <label for="od">Data wprowadzki: *</label>
+            <input type="date" name="od" value="1997-09-24" id="od" required />
+            <span id="errorOd"></span>
+
+            <label for="do">Data wyprowadzki: </label>
+            <input type="date" name="do" id="do" value="Wciąż mieszka" />
+            <span id="errorDo"></span>
+
+            <label for="mieszkanie">Mieszkanie: *</label>
+            <select name="mieszkanie" id="mieszkanie" required>
+                <option value="--">Warszawa, Panieńska 5/30</option>
+                <option value="--">Kazimierz Dolny, Olchowa 2</option>
+            </select>
+            <span id="errorMieszkanie"></span>
+
+        </form>
+
+        <div class="form-buttons">
+            <div class="edited-box">
+                <input type="submit" class="form-button-submit" value="Edytuj" />
+                <span class="confirmed-text">Rekord zmieniony.</span>
+            </div>
+            <a href="list.html" class="form-button-cancel">Anuluj</a>
+        </div>
+
+    </main>
+    <footer>
+        Jakub Kiljański s18482
+    </footer>
+</body>
+
+</html>

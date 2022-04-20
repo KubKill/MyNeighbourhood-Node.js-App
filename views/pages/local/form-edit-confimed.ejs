@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <Meta charset="UTF-8">
+    <title>Mieszkanie edycja</title>
+    <script type="application/javascript" src="../../js/validationCommon.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <Header>
+        <div class="tv">
+            <h1>Mieszkania</h1>
+            <img src="../../images/mieszkania_2.jpg"
+                alt="Obrazek przedstawiający tytułowych bogaterów bajki 'Sąsiedzi'">
+        </div>
+    </Header>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Strona główna</a></li>
+            <li><a href="../resident/list.html">Somsiedzi</a></li>
+            <li><a href="list.html" class="active">Mieszkania</a></li>
+            <li><a href="../resident_local/list.html">Somsiedzi w mieszkaniach</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Edytuj mieszkanie</h2>
+        <form class="form">
+
+            <label for="numer">Numer mieszkania: *</label>
+            <input type="text" name="imie" value="12" id="imie" required />
+            <span id="errorImie"></span>
+
+            <label for="kodp">Kod pocztowy: *</label>
+            <input type="number" name="kodp" value="12365" id="kodp" required />
+            <span id="errorKodp"></span>
+
+            <label for="ulica">Ulica: </label>
+            <input type="text" name="ulica" value="Panieńska" id="ulica" reqiured />
+            <span id="errorUlica"></span>
+
+            <label for="nrBud">Numer budynku: *</label>
+            <input type="text" name="nrBud" value="5" id="nrBud" reqiured />
+            <span id="errorNrBud"></span>
+
+            <label for="miasto">Miasto: *</label>
+            <input type="text" name="miasto" value="Warszawa" id="miasto" reqiured />
+            <span id="errorMiasto"></span>
+
+            <label for="rozmMiesz">Rozmiar miaszkania: </label>
+            <input type="number" name="rozmMiesz" value="82" id="rozmMiesz" />
+            <span id="errorRozmMiesz"></span>
+
+            <label for="pietro">Piętro: </label>
+            <input type="number" name="pietro" value="5" id="pietro" />
+            <span id="errorPietro"></span>
+
+            <label for="garaz">Czy ma garaż: </label>
+            <select name="garaz" id="garaz">
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+                <option value="--">...</option>
+            </select>
+            <span id="errorGaraz"></span>
+
+            <label for="piwnica">Czy ma piwnicę: </label>
+            <select name="piwnica" id="piwnica">
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+                <option value="--">...</option>
+            </select>
+            <span id="errorPiwnica"></span>
+
+            <div class="form-buttons">
+                <div class="edited-box">
+                    <input type="submit" class="form-button-submit" value="Edytuj" />
+                    <span class="confirmed-text">Rekord zmieniony.</span>
+                </div>
+                <a href="list.html" class="form-button-cancel">Anuluj</a>
+            </div>
+
+
+        </form>
+    </main>
+    <footer>
+        Jakub Kiljański s18482
+    </footer>
+</body>
+
+</html>

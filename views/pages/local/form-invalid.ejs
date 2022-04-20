@@ -1,0 +1,164 @@
+
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>
+            <%= title2 %>
+        </h2>
+        <form method="post" action="<%=formAction%>" class="form" novalidate >
+
+            <input type="hidden" name="_id" value="<%=loc._id %>">
+
+            <label for="numer">Numer mieszkania: *</label>
+            <input type="text" name="number" id="numer" placeholder="1-6 znaków" required value="<%= loc.number %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('number')) ? 'error-input' : '' %>" />
+            <span id="errorNumer" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('number'))) { %>
+                <%= validationErrors.find(e => e.path.includes('number')).message %>
+                <% } %>
+            </span>
+
+            <label for="kodp">Kod pocztowy: *</label>
+            <input type="text" name="postal_code" id="kodp" required value="<%= loc.postal_code %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+            class="<%= validationErrors.find(e => e.path.includes('postal_code')) ? 'error-input' : '' %>" />
+            <span id="errorKodp" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('postal_code'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('postal_code')).message %>
+                <% } %>
+            </span>
+
+            <label for="ulica">Ulica: </label>
+            <input type="text" name="street" id="ulica" reqiured value="<%= loc.street %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>
+            class="<%= validationErrors.find(e => e.path.includes('street')) ? 'error-input' : '' %>" />
+            <span id="errorUlica" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('street'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('street')).message %>
+                <% } %>
+            </span>
+
+            <label for="nrBud">Numer budynku: </label>
+            <input type="text" name="street_number" id="nrBud" reqiured value="<%= loc.street_number %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+            class="<%= validationErrors.find(e => e.path.includes('street_number')) ? 'error-input' : '' %>" />
+            <span id="errorNrBud" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('street_number'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('street_number')).message %>
+                <% } %>
+            </span>
+
+            <label for="miasto">Miasto: *</label>
+            <input type="text" name="city" id="miasto" reqiured value="<%= loc.city %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('city')) ? 'error-input' : '' %>" />
+            <span id="errorMiasto" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('city'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('city')).message %>
+                <% } %>
+            </span>
+
+            <label for="rozmMiesz">Rozmiar miaszkania: </label>
+            <input type="number" name="size" id="rozmMiesz" value="<%= loc.size %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>
+            class="<%= validationErrors.find(e => e.path.includes('size')) ? 'error-input' : '' %>" />
+            <span id="errorRozmMiesz" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('size'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('size')).message %>
+                <% } %>
+            </span>
+
+            <label for="pietro">Piętro: </label>
+            <input type="number" name="floor" id="pietro" value="<%= loc.floor %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('floor')) ? 'error-input' : '' %>" />
+            <span id="errorPietro" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('floor'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('floor')).message %>
+                <% } %>
+            </span>
+
+            <label for="garaz">Czy ma garaż: </label>
+            <select name="has_garage" id="garaz" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                    class="<%= validationErrors.find(e => e.path.includes('has_garage')) ? 'error-input' : '' %>" >
+                <option value='' <%= (loc.has_garage==null || loc.has_garage=='') ? 'selected' : ''%>>...</option>
+                <option value="true" <%= (loc.has_garage==true) ? 'selected' : ''%>>Tak</option>
+                <option value="false" <%= (loc.has_garage==false) ? 'selected' : ''%>>Nie</option>
+            </select>
+            <span id="errorGaraz">
+                <% if (validationErrors.find(e => e.path.includes('has_garage'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('has_garage')).message %>
+                <% } %>
+            </span>
+
+            <label for="piwnica">Czy ma piwnicę: </label>
+            <select name="has_basement" id="piwnica" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                    class="<%= validationErrors.find(e => e.path.includes('has_basement')) ? 'error-input' : '' %>" />
+                <option value='' <%= (loc.has_basement==null || loc.has_basement=='') ? 'selected' : ''%>>...</option>
+                <option value="true" <%= (loc.has_basement==true) ? 'selected' : ''%>>Tak</option>
+                <option value="false" <%= (loc.has_basement==false) ? 'selected' : ''%>>Nie</option>
+            </select>
+            <span id="errorPiwnica">
+                <% if (validationErrors.find(e => e.path.includes('has_basement'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('has_basement')).message %>
+                <% } %>
+            </span>
+
+            <% if (formMode=='showDetails' ) { %>
+                <div class="section-buttons">
+                    <a href="/locals/update/<%= loc._id %>" class="button-edit">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <div class="form-buttons">
+                        <p id="errorsSummary" class="errors-text"></p>
+                        <% if (formMode !='showDetails' ) { %>
+                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                            <a class="form-button-cancel" href="/locals">Anuluj</a>
+                            <% } else { %>
+                                <a class="form-button-cancel" href="/locals"> Powrót</a>
+                                <% } %>
+                    </div>
+        </form>
+
+        <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+
+            <h2>Sczegóły zamieszkania</h2>
+
+            <div style="overflow-x:auto;">
+                <table class="table-list">
+                    <thead>
+                        <thead>
+                            <tr>
+                                <th>Imie</th>
+                                <th>Nazwisko</th>
+                                <th>Od</th>
+                                <th>Do</th>
+                            </tr>
+                        </thead>
+                    </thead>
+                    <tbody>
+                        <% for ( let tables of loc.resident_local) { %>
+                            <tr>
+                                <td><a href="/residents/details/<%= tables.resident._id %>">
+                                        <%= tables.resident.firstName %>
+                                    </a></td>
+                                <td><a href="/residents/details/<%= tables.resident._id %>">
+                                        <%= tables.resident.lastName %>
+                                    </a></td>
+                                <td>
+                                    <%= tables.from.toISOString().split('T') [0] %>
+                                </td>
+                                <td>
+                                    <%= tables.until ? tables.until.toISOString().split('T')[0] : 'Wciąż mieszka' %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <% } %>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

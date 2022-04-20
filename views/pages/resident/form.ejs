@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <Meta charset="UTF-8">
+    <title>Somsiad formularz</title>
+    <script type="application/javascript" src="../../js/validationCommon.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <Header>
+        <div class="tv">
+            <h1>Moi Somsiedzi</h1>
+            <img src="../../images/somsiedzi-kibel.jpg"
+                alt="Obrazek przedstawiający tytułowych bogaterów bajki 'Sąsiedzi'">
+        </div>
+    </Header>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Strona główna</a></li>
+            <li><a href="list.html" class="active">Somsiedzi</a></li>
+            <li><a href="../local/list.html">Mieszkania</a></li>
+            <li><a href="../resident_local/list.html">Somsiedzi w mieszkaniach</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Nowy somsiad</h2>
+        <form class="form">
+
+            <label for="imie">Imię: *</label>
+            <input type="text" name="imie" id="imie" class="error-input" required />
+            <span id="errorImie" class="errors-text">Pole jest wymagane</span>
+
+            <label for="nazwisko">Nazwisko: *</label>
+            <input type="text" name="nazwisko" id="nazwisko" class="error-input" required />
+            <span id="errorNazwisko" class="errors-text">Pole jest wymagane</span>
+
+            <label for="numer">Numer: </label>
+            <input type="tel" name="numer" id="numer" />
+            <span id="errorNumer" class="errors-text"></span>
+
+            <label for="email">E-mail: </label>
+            <input type="email" name="email" id="email" />
+            <span id="errorEmail" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text">Formularz zawiera bledy</p>
+                <input type="submit" class="form-button-submit" value="Dodaj" />
+                <a href="../resident/list.html" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+        Jakub Kiljański s18482
+    </footer>
+</body>
+
+</html>

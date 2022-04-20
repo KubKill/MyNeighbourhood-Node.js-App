@@ -1,0 +1,65 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Lista somsiadów w mieszkaniach</h2>
+        <div style="overflow-x:auto;">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Od</th>
+                        <th>Do</th>
+                        <th>Ulica</th>
+                        <th>Numer budynku</th>
+                        <th>Numer mieszkania</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let table of resLoc) { %>
+                        <tr>
+                            <td>
+                                <%= table.resident.firstName %>
+                            </td>
+                            <td>
+                                <%= table.resident.lastName %>
+                            </td>
+                            <td>
+                                <%= table.from.toISOString().split('T') [0] %>
+                            </td>
+                            <td>
+                                <%= table.until ? table.until.toISOString().split('T') [0] : 'Wciąż mieszka' %>
+                            </td>
+                            <td>
+                                <%= table.local.street %>
+                            </td>
+                            <td>
+                                <%= table.local.street_number %>
+                            </td>
+                            <td>
+                                <%= table.local.number %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li><a href="resident_local/details/<%=table._id%>"
+                                            class="list-actions-button-details">Szczegóły</a></li>
+                                </ul>
+                                <ul class="list-actions">
+                                    <li><a href="resident_local/update/<%=table._id%>"
+                                            class="list-actions-button-edit">Edytuj</a>
+                                    </li>
+                                </ul>
+                                <ul class="list-actions">
+                                    <li><a onclick="return confirmDelete('resident_local/delete/<%=table._id%>');"
+                                            class="list-actions-button-delete">Usuń</a></li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/resident_local/add" class="button-add">Dodaj nowe mieszkanie</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

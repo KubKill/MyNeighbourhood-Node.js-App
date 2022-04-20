@@ -1,0 +1,29 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Edytuj somsiada</h2>
+        <form class="form" novalidate onsubmit="return validateForm()">
+
+            <label for="imie">Imię: *</label>
+            <input type="text" name="imie" value="Przemysław" id="imie" required />
+            <span id="errorImie" class="errors-text"></span>
+
+            <label for="nazwisko">Nazwisko: *</label>
+            <input type="text" name="nazwisko" value="Kiljański" id="nazwisko" required />
+            <span id="errorNazwisko" class="errors-text"></span>
+
+            <label for="numer">Numer: </label>
+            <input type="tel" name="numer" value="987 654 321" id="numer" />
+            <span id="errorNumer" class="errors-text"></span>
+
+            <label for="email">E-mail: </label>
+            <input type="email" name="email" value="przemo@gmail.com" id="email" />
+            <span id="errorEmail" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="form-button-submit" value="Zatwierdź" />
+                <a href="../resident/list.html" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

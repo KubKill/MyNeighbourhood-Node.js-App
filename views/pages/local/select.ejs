@@ -1,0 +1,72 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Mieszkanie szczegóły</h2>
+        <form class="form">
+            <label for="numer">Numer mieszkania: *</label>
+            <input type="text" name="imie" value="12" id="imie" disabled />
+            <span id="errorImie"></span>
+
+            <label for="kodp">Kod pocztowy: *</label>
+            <input type="number" name="kodp" value="12365" id="kodp" disabled />
+            <span id="errorKodp"></span>
+
+            <label for="ulica">Ulica: </label>
+            <input type="text" name="ulica" value="Panieńska" id="ulica" disabled />
+            <span id="errorUlica"></span>
+
+            <label for="nrBud">Numer budynku: *</label>
+            <input type="text" name="nrBud" value="5" id="nrBud" disabled />
+            <span id="errorNrBud"></span>
+
+            <label for="miasto">Miasto: *</label>
+            <input type="text" name="miasto" value="Warszawa" id="miasto" disabled />
+            <span id="errorMiasto"></span>
+
+            <label for="rozmMiesz">Rozmiar miaszkania: </label>
+            <input type="number" name="rozmMiesz" value="82" id="rozmMiesz" disabled />
+            <span id="errorRozmMiesz"></span>
+
+            <label for="pietro">Piętro: </label>
+            <input type="number" name="pietro" value="5" id="pietro" disabled />
+            <span id="errorPietro"></span>
+
+            <label for="garaz">Czy ma garaż: </label>
+            <select name="garaz" id="garaz" disabled>
+                <option value="Tak">Tak</option>
+            </select>
+            <span id="errorGaraz"></span>
+
+            <label for="piwnica">Czy ma piwnicę: </label>
+            <select name="piwnica" id="piwnica" disabled>
+                <option value="Tak">Tak</option>
+            </select>
+            <span id="errorPiwnica"></span>
+        </form>
+
+        <h2>Szczegóły zamieszkania</h2>
+        <div style="overflow-x:auto;">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Od</th>
+                        <th>Do</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Przemysław</td>
+                        <td>Kiljańśki</td>
+                        <td>24.09.1997</td>
+                        <td>Wciąż mieszka</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="select-box-buttons">
+            <a href="locals/update/1" class="select-button-edit">Edytuj</a>
+            <a href="locals" class="select-button-cancel">Powrót</a>
+        </div>
+    </main>
+
+    <%- include('../../fragments/footer.ejs') %>

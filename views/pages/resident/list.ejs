@@ -1,0 +1,43 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Lista somsiadów</h2>
+        <div class="table-contener">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let res of ress) { %>
+                        <tr>
+                            <td>
+                                <%= res.firstName %>
+                            </td>
+                            <td>
+                                <%= res.lastName %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li><a href="/residents/details/<%=res._id%>"
+                                            class="list-actions-button-details">Szczegóły</a></li>
+                                </ul>
+                                <ul class="list-actions">
+                                    <li><a href="/residents/update/<%=res._id%>"
+                                            class="list-actions-button-edit">Edytuj</a></li>
+                                </ul>
+                                <ul class="list-actions">
+                                    <li><a onclick="return confirmDelete('/residents/delete/<%=res._id%>')"
+                                            class="list-actions-button-delete">Usuń</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/residents/add" class="button-add">Dodaj nowego somsiada</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

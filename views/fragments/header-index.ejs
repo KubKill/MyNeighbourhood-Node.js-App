@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <Meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+        <%= title %>
+    </title>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <%- navLocation=='residents' ? '<script type="application/javascript" src="/js/validationResForm.js"></script>' : ''
+        %>
+        <%- navLocation=='locals' ? '<script type="application/javascript" src="/js/validationLocForm.js"></script>'
+            : '' %>
+            <%- navLocation=='resident_local'
+                ? '<script type="application/javascript" src="/js/validationResLocForm.js"></script>' : '' %>
+                <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <Header>
+        <div class="tv">
+            <h1>
+                <%= title %>
+            </h1>
+            <img src="<%= img %>" alt="Obrazek przedstawiający tytułowych bogaterów bajki 'Sąsiedzi'">
+        </div>
+
+    </Header>
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
+            <li><a href="/residents" class="<%= (navLocation == 'residents' || (navLocation=='main' && (!loggedUser))) ? 'active' : ''%>">Somsiedzi</a></li>
+            <li><a href="/locals" class="<%= (navLocation == 'locals' || (navLocation=='main' && (!loggedUser))) ? 'active' : ''%>">Mieszkania</a></li>
+            <li><a href="/resident_local" class="<%= (navLocation == 'resident_local' || (navLocation=='main' && (!loggedUser))) ? 'active' : ''%>">Somsiedzi w
+                    mieszkaniach</a></li>
+        </ul>
+    </nav>

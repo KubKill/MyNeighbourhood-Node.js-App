@@ -1,0 +1,66 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Somsiad w mieszkaniu szczegółowe dane</h2>
+        <form class="form">
+
+            <label for="somsiad">Somsiad: *</label>
+            <select name="somsiad" id="somsiad" disabled>
+                <option value="--">Przemysław Klijański</option>
+                <option value="--">Grzegorz Brzęczyszczykiewicz</option>
+            </select>
+            <span id="errorSomsiad"></span>
+
+            <label for="od">Data wprowadzki: *</label>
+            <input type="date" name="od" value="1997-09-24" id="od" disabled />
+            <span id="errorOd"></span>
+
+            <label for="do">Data wyprowadzki: </label>
+            <input type="date" name="do" id="do" value="Wciąż mieszka" disabled />
+            <span id="errorDo"></span>
+
+            <label for="mieszkanie">Mieszkanie: *</label>
+            <select name="mieszkanie" id="mieszkanie" disabled>
+                <option value="--">Warszawa, Panieńska 5/30</option>
+                <option value="--">Kazimierz Dolny, Olchowa 2</option>
+            </select>
+            <span id="errorMieszkanie"></span>
+
+        </form>
+
+        <h2>Szczegóły zamieszkania</h2>
+        <div style="overflow-x:auto;">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Numer telefonu</th>
+                        <th>Od</th>
+                        <th>Do</th>
+                        <th>Miasto</th>
+                        <th>Ulica</th>
+                        <th>Numer budynku</th>
+                        <th>Numer mieszkania</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Przemysław</td>
+                        <td>Klijański</td>
+                        <td>098 765 432</td>
+                        <td>24.09.1997</td>
+                        <td>Wciąż mieszka</td>
+                        <td>Warszawa</td>
+                        <td>Panieńska</td>
+                        <td>5</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="select-box-buttons">
+            <a href="form-edit.html" class="select-button-edit">Edytuj</a>
+            <a href="list.html" class="select-button-cancel">Powrót</a>
+        </div>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

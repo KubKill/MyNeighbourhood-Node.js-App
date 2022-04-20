@@ -1,0 +1,56 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>Lista mieszkań</h2>
+        <div style="overflow-x:auto;">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Numer mieszkania</th>
+                        <th>Ulica</th>
+                        <th>Numer budynku</th>
+                        <th>Miasto</th>
+                        <th>Wielkość</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let locc of loc) { %>
+                        <tr>
+                            <td>
+                                <%= locc.number %>
+                            </td>
+                            <td>
+                                <%= locc.street %>
+                            </td>
+                            <td>
+                                <%= locc.street_number %>
+                            </td>
+                            <td>
+                                <%= locc.city %>
+                            </td>
+                            <td>
+                                <%= locc.size %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li><a href="locals/details/<%=locc._id%>"
+                                            class="list-actions-button-details">Szczegóły</a></li>
+                                </ul>
+                                <ul class="list-actions">
+                                    <li><a href="locals/update/<%=locc._id%>"
+                                            class="list-actions-button-edit">Edytuj</a>
+                                    </li>
+                                </ul>
+                                <ul class="list-actions">
+                                    <li><a onclick="return confirmDelete('locals/delete/<%=locc._id%>')"
+                                            class="list-actions-button-delete">Usuń</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/locals/add" class="button-add">Dodaj nowe mieszkanie</a></p>
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

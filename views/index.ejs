@@ -1,0 +1,47 @@
+<%- include('./fragments/header-index.ejs') %>
+
+    <main>
+        <h2>Instrukcja obsługi</h2>
+        <p>
+            <% if(!loggedUser) {%>
+                <%='Zaloguj się, po czym wybierz jeden z przycisków pod telewizorem, żeby zmienić kanał.'%>
+            <% } else if(mode=='edit') {%>
+                <%= 'Zmień dane.' %>
+            <% } else if(mode=='register') { %>
+                <%= 'Wprowadź nowe dane.'%>
+            <% } else { %>
+                <%= 'Wybierz jeden z przycisków pod telewizorem, żeby zmienić kanał.'%>
+            <% } %>
+        </p>
+
+        <% if(!loggedUser || mode=='edit' || mode=='register') { %>
+            <div id="login">
+                <h5><%= title2 %></h5>
+                <form class="login-form" method="post" action="<%= submitPath %>" novalidate>
+                    <label for="loginEmail">Email:</label>
+                    <input value="<%= (mode=='edit') ? loggedUser.email : '' %>" type="email" id="loginEmail" name="email" <%= (loginError) ? 'class=error-input' : ''%>>
+                    <span></span>
+
+                    <label for="loginPassword">Hasło:</label>
+                    <input type="password" id="loginPassword" name="password" <%= (loginError) ? 'class=error-input' : ''%>>
+                    <span></span>
+
+                    <% if(mode=='edit' || mode=='register') { %>
+                    <%- '<input type="submit" value="Zatwierdź">'%>
+                    <%- '<a href="/">Anuluj </a>'%>
+                    <% } else { %>
+                        <%- '<input type="submit" value="Zaloguj się">'%>
+                    <% }%>
+                    <span id="loginErrors" class="errors-text" ><%= loginError ? loginError : ''%></span>
+                </form>
+            </div>
+        <% } else { %>
+            <span>Jesteś zalogowany jako: <%-loggedUser.email%></span>
+            <div class="login-buttons">
+                <a class="login-button-edit" href="/login-edit">Edytuj konto</a>
+                <a class="login-button-logout" href="/logout">Wyloguj się</a>
+            </div>
+        <% } %>
+
+    </main>
+    <%- include('./fragments/footer.ejs') %>

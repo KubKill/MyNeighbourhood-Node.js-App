@@ -1,0 +1,114 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main>
+        <h2>
+            <%= title2 %>
+        </h2>
+        <form method="post" action="<%=formAction%>" class="form" novalidate>
+
+            <input type="hidden" name="_id" value="<%=ress._id %>">
+
+            <label for="imie">Imię: *</label>
+            <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" required
+                value="<%= ress.firstName %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" />
+            <span id="errorImie" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+                <% } %>
+            </span>
+
+            <label for="nazwisko">Nazwisko: *</label>
+            <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" required
+                value="<%= ress.lastName %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>" />
+            <span id="errorNazwisko" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+                <% } %>
+            </span>
+
+            <label for="numer">Numer: </label>
+            <input type="tel" name="number" id="number" placeholder="z numerem kierunkowym" value="<%= ress.number %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('number')) ? 'error-input' : '' %>" />
+            <span id="errorNumer" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('number'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('number')).message %>
+                <% } %>
+            </span>
+
+            <label for="email">E-mail: </label>
+            <input type="email" name="email" id="email" placeholder="np. nazwa@domena.pl" value="<%= ress.email %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"/>
+            <span id="errorEmail" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('email')).message %>
+                <% } %>
+            </span>
+
+            <% if (formMode=='showDetails' ) { %>
+                <div class="section-buttons">
+                    <a href="/residents/update/<%= ress._id %>" class="button-edit">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <div class="form-buttons">
+                        <p id="errorsSummary" class="errors-text"></p>
+                        <% if (formMode !='showDetails' ) { %>
+                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                            <a class="form-button-cancel" href="/residents">Anuluj</a>
+                            <% } else { %>
+                                <a class="form-button-cancel" href="/residents"> Powrót</a>
+                                <% } %>
+                    </div>
+        </form>
+
+        <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+
+            <h2>Sczegóły zamieszkania</h2>
+
+            <div style="overflow-x:auto;">
+                <table class="table-list">
+                    <thead>
+                        <tr>
+                            <th>Numer mieszkania</th>
+                            <th>Numer budynku</th>
+                            <th>Ulica</th>
+                            <th>Miasto</th>
+                            <th>Data wprowadzki</th>
+                            <th>Data wyprowadzki</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for ( let tables of ress.resident_local) { %>
+                            <tr>
+                                <td><a href="/locals/details/<%= tables.local._id %>">
+                                        <%= tables.local.number %>
+                                    </a></td>
+                                <td><a href="/locals/details/<%= tables.local._id %>">
+                                        <%= tables.local.street_number %>
+                                    </a></td>
+                                <td><a href="/locals/details/<%= tables.local._id %>">
+                                        <%= tables.local.street %>
+                                    </a></td>
+                                <td><a href="/locals/details/<%= tables.local._id %>">
+                                        <%= tables.local.city %>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= tables.from.toISOString().split('T') [0] %>
+                                </td>
+                                <td>
+                                    <%= tables.until ? tables.until.toISOString().split('T')[0] : 'Wciąż mieszka' %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <% } %>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

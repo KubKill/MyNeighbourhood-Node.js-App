@@ -1,0 +1,137 @@
+<%- include('../../fragments/header-index.ejs') %>
+    <main class="szerszy-form">
+        <h2>
+            <%= title2 %>
+        </h2>
+        <form method="post" action="<%=formAction%>" class="form" novalidate>
+
+            <input type="hidden" name="_id" id="_id" value="<%=resLoc._id %>">
+
+            <label for="somsiad">Somsiad: *</label>
+            <select name="res_id" id="somsiad" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                    class="<%= validationErrors.find(e => e.path.includes('res_id')) ? 'error-input' : '' %>" />
+                <%= (formMode=='createNew') ? '<option value="" selected>--- Wybierz Somsiada ---</option>' : '' %>
+                <% for (let i=0; i<allRes.length; i++) { let res=allRes[i]; %>
+                    <option value="<%= res._id %>" label="<%= res.firstName + ' ' + res.lastName %>" <%=(resLoc._id &&
+                        res._id.toString()==resLoc.resident._id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
+            </select>
+            <span id="errorSomsiad" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('res_id'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('res_id')).message %>
+                <% } %>
+            </span>
+
+            <label for="od">Data wprowadzki: *</label>
+            <input type="text" name="from" id="od" required
+                value="<%= (resLoc.from && ((formMode=='showDetails') || (formMode=='edit'))) ? (resLoc.from.toISOString().split('T') [0]) : resLoc.from %>"
+                <%=(formMode=='showDetails') ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('from')) ? 'error-input' : '' %>" />
+            <span id="errorOd" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('from'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('from')).message %>
+                <% } %>
+            </span>
+
+            <label for="do">Data wyprowadzki: </label>
+            <input type="text" name="until" id="do"
+                value="<%= (resLoc.until && (formMode=='showDetails' || formMode=='edit')) ? (resLoc.until.toISOString().split('T') [0]) : ((formMode=='showDetails') ? 'Wciąż mieszka' : resLoc.until )%>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                   class="<%= validationErrors.find(e => e.path.includes('until')) ? 'error-input' : '' %>" />
+            <span id="errorDo" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('until'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('until')).message %>
+                <% } %>
+            </span>
+
+            <label for="mieszkanie">Mieszkanie: *</label>
+            <select name="loc_id" id="mieszkanie" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                    class="<%= validationErrors.find(e => e.path.includes('loc_id')) ? 'error-input' : '' %>" />
+                <%= (formMode=='createNew') ? '<option value="" selected>--- Wybierz mieszkanie ---</option>' : '' %>
+<!--                <option value="" selected>-&#45;&#45; Wybierz mieszkanie -&#45;&#45;</option>-->
+                <% for (let i=0; i<allLoc.length; i++) { let loc=allLoc[i]; %>
+                    <option value="<%= loc._id %>" label="<%= loc.number + ' ' + loc.street + ' ' + loc.city %>"
+                        <%=(resLoc._id && loc._id.toString()==resLoc.local._id.toString()) ? 'selected' : '' %>>
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorMieszkanie" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('loc_id'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('loc_id')).message %>
+                <% } %>
+            </span>
+
+            <% if (formMode=='showDetails' ) { %>
+                <div class="section-buttons">
+                    <a href="/resident_local/update/<%= resLoc._id %>" class="button-edit">Edytuj</a>
+                </div>
+                <% } %>
+
+                    <div class="form-buttons">
+                        <p id="errorsSummary" class="errors-text"></p>
+                        <% if (formMode !='showDetails' ) { %>
+                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                            <a class="form-button-cancel" href="/resident_local">Anuluj</a>
+                            <% } else { %>
+                                <a class="form-button-cancel" href="/resident_local"> Powrót</a>
+                                <% } %>
+                    </div>
+        </form>
+
+        <% if (formMode=='showDetails' ) { %>
+
+            <h2>Sczegóły zamieszkania</h2>
+
+            <div style="overflow-x:auto;">
+                <table class="table-list">
+                    <thead>
+                        <tr>
+                            <th>Imie</th>
+                            <th>Nazwisko</th>
+                            <th>Numer telefonu</th>
+                            <th>Od</th>
+                            <th>Do</th>
+                            <th>Miasto</th>
+                            <th>Ulica</th>
+                            <th>Numer budynku</th>
+                            <th>Numer mieszkania</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="/residents/details/<%= resLoc.resident._id %>">
+                                    <%= resLoc.resident.firstName %>
+                                </a></td>
+                            <td><a href="/residents/details/<%= resLoc.resident._id %>">
+                                    <%= resLoc.resident.lastName %>
+                                </a></td>
+                            <td><a href="/residents/details/<%= resLoc.resident._id %>">
+                                    <%= resLoc.resident.number %>
+                                </a></td>
+                            <td><a>
+                                    <%= resLoc.from.toISOString().split('T') [0] %>
+                                </a></td>
+                            <td>
+                                <%= resLoc.until ? resLoc.until.toISOString().split('T')[0] : 'Wciąż mieszka' %>
+                            </td>
+                            <td><a href="/locals/details/<%= resLoc.local._id %>">
+                                <%= resLoc.local.city %>
+                                </a></td>
+                            <td><a href="/locals/details/<%= resLoc.local._id %>">
+                                <%= resLoc.local.street %>
+                                </a></td>
+                            <td><a href="/locals/details/<%= resLoc.local._id %>">
+                                <%= resLoc.local.street_number %>
+                                </a></td>
+                            <td><a href="/locals/details/<%= resLoc.local._id %>">
+                                <%= resLoc.local.number %>
+                                </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <% } %>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>
