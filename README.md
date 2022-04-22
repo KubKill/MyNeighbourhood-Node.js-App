@@ -16,3 +16,6 @@ Basic web app with authentication, data validation and responsiveness writen in 
 - npm i in project directory
 - cd ..\docker 
 - docker-compose up
+
+- login: abc@wp.pl
+- password: 12345
